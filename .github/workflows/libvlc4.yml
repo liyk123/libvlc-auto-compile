@@ -13,6 +13,7 @@ jobs:
           echo "ANDROID_SDK=/usr/local/lib/android/sdk" >> $GITHUB_ENV
           echo "ANDROID_NDK=/usr/local/lib/android/sdk/ndk/25.2.9519653" >> $GITHUB_ENV
           git config --global user.email "noreply@example.com"
+          git config --global user.name "Your Name"
     
       - name: Clone vlc-android
         run: git clone https://code.videolan.org/videolan/vlc-android.git
