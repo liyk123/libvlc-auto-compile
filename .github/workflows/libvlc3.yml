@@ -27,6 +27,7 @@ jobs:
         run: git clone https://code.videolan.org/videolan/vlc-android.git
         
       - name: Clone libvlc
+        working-directory: vlc-android
         run: buildsystem/compile.sh --init
         
       - name: Run compile (arm)
