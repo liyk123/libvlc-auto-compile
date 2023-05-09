@@ -5,23 +5,29 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: nttld/setup-ndk@v1
+      - name: Perform Android NDK
+        uses: nttld/setup-ndk@v1
         id: setup-ndk
         with:
           ndk-version: r21e
           add-to-path: false
-      - run: |
+
+      - name: Set environment
+        run: |
           echo "ANDROID_SDK=/usr/local/lib/android/sdk" >> $GITHUB_ENV
           echo "ANDROID_NDK=${{ steps.setup-ndk.outputs.ndk-path }}" >> $GITHUB_ENV
           git config --global user.email "noreply@example.com"
           git config --global user.name "Your Name"
+          rm -rf vlc-android
 
       - name: Clone vlc-android
         run: git clone https://code.videolan.org/videolan/vlc-android.git
+        
+      - name: Clone libvlc
+        run: buildsystem/compile.sh --init
         
       - name: Run compile (arm)
         working-directory: vlc-android
