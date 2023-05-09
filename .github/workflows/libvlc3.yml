@@ -9,12 +9,18 @@ jobs:
 
     steps:
       - name: Set environment
-        run: |
+      - uses: actions/checkout@v2
+      - uses: nttld/setup-ndk@v1
+        id: setup-ndk
+        with:
+          ndk-version: r21e
+          add-to-path: false
+      - run: |
           echo "ANDROID_SDK=/usr/local/lib/android/sdk" >> $GITHUB_ENV
-          echo "ANDROID_NDK=/usr/local/lib/android/sdk/ndk/21.4.7075529" >> $GITHUB_ENV
+          echo "ANDROID_NDK=${{ steps.setup-ndk.outputs.ndk-path }}" >> $GITHUB_ENV
           git config --global user.email "noreply@example.com"
           git config --global user.name "Your Name"
-    
+
       - name: Clone vlc-android
         run: git clone https://code.videolan.org/videolan/vlc-android.git
         
