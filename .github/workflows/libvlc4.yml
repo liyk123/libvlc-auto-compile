@@ -10,8 +10,8 @@ jobs:
     steps:
       - name: Set environment
         run: |
-          export ANDROID_SDK=/usr/local/lib/android/sdk
-          export ANDROID_NDK=/usr/local/lib/android/sdk/ndk/25.2.9519653
+          echo "ANDROID_SDK=/usr/local/lib/android/sdk" >> $GITHUB_ENV
+          echo "ANDROID_NDK=/usr/local/lib/android/sdk/ndk/25.2.9519653" >> $GITHUB_ENV
     
       - name: Clone vlc-android
         run: git clone https://code.videolan.org/videolan/vlc-android.git
