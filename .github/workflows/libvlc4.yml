@@ -19,7 +19,9 @@ jobs:
           cd vlc-android
         
       - name: Run compile (arm)
-        run: buildsystem/compile.sh -l -r -vlc4 -a arm
+        run: |
+          ls
+          buildsystem/compile.sh -l -r -vlc4 -a arm
         
       - name: Run compile (arm64)
         run: buildsystem/compile.sh -l -r -vlc4 -a arm64
