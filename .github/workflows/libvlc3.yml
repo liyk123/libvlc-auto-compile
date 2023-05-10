@@ -26,25 +26,29 @@ jobs:
       - name: Clone vlc-android
         run: git clone https://code.videolan.org/videolan/vlc-android.git
         
-      - name: Clone libvlc
+      - name: Init libvlc (arm)
         working-directory: vlc-android
-        run: buildsystem/compile.sh --init
+        run: buildsystem/compile.sh --init --reset -a arm
         
       - name: Run compile (arm)
         working-directory: vlc-android
         run: buildsystem/compile.sh -l -r -a arm
         
-      - name: Run compile (arm64)
-        working-directory: vlc-android
-        run: buildsystem/compile.sh -l -r -a arm64
+      # - name: Init libvlc (arm64)
+      #   working-directory: vlc-android
+      #   run: buildsystem/compile.sh --init --reset -a arm64
+
+      # - name: Run compile (arm64)
+      #   working-directory: vlc-android
+      #   run: buildsystem/compile.sh -l -r -a arm64
         
-      - name: Run compile (x86)
-        working-directory: vlc-android
-        run: buildsystem/compile.sh -l -r -a x86
+      # - name: Run compile (x86)
+      #   working-directory: vlc-android
+      #   run: buildsystem/compile.sh -l -r -a x86
         
-      - name: Run compile (x86_64)
-        working-directory: vlc-android
-        run: buildsystem/compile.sh -l -r -a x86_64
+      # - name: Run compile (x86_64)
+      #   working-directory: vlc-android
+      #   run: buildsystem/compile.sh -l -r -a x86_64
       
       - name: Archive aar
         uses: actions/upload-artifact@v3
